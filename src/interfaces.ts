@@ -1,7 +1,13 @@
-export interface IOutletContext {
+export enum TodoState {
+  Done = "done",
+  Idle = "idle",
+  WaitingForApproval = "waiting",
+  InProgress = "in-progress",
+}
+export interface ITodoContext {
   addTodo: (newTodo: ITodo) => void;
-  markTodo: (todoId: string) => void;
   removeTodo: (todoId: string) => void;
+  updateState: (todoToUpdate: ITodo) => void;
   todos: ITodo[];
 }
 
@@ -9,6 +15,6 @@ export interface ITodo {
   author: string;
   id: string;
   description: string;
-  done: boolean;
+  state: TodoState;
   timestamp: number;
 }

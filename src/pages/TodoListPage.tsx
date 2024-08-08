@@ -7,12 +7,11 @@ export function TodoListPage(): ReactElement {
 
   return (
     <>
-      <h1>My Todo List</h1>
-      <section className="todo-list">
+      <main className="todo-list-page">
         {todos.map((todo) => (
           <Todo key={todo.id} todo={todo} />
         ))}
-      </section>
+      </main>
     </>
   );
 }

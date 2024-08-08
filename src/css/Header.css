@@ -1,0 +1,24 @@
+.header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+
+  background-color: var(--black-bg);
+  margin-bottom: 3rem;
+  padding: 0.5rem 1rem;
+}
+
+.header .logo {
+  font-size: 2rem;
+}
+
+.header .navbar {
+  display: flex;
+  gap: 1rem;
+}
+
+.header .navbar .link {
+  color: whitesmoke;
+  font-size: 1.5rem;
+  text-decoration: none;
+}

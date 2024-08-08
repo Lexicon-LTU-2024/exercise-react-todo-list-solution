@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { ITodo } from "../interfaces";
+import { ITodo, TodoState } from "../interfaces";
 import { useTodosLogic } from "../hooks";
 
 interface ITodoProps {
@@ -7,33 +7,47 @@ interface ITodoProps {
 }
 
 export function Todo({ todo }: ITodoProps): ReactElement {
-  const { markTodo, removeTodo } = useTodosLogic();
+  const { removeTodo, updateState } = useTodosLogic();
 
-  const computedTodoClasses = todo.done ? "todo done" : "todo";
-  const computedDate = new Date(todo.timestamp).toLocaleDateString();
+  // const computedDate = new Date(todo.timestamp).toLocaleDateString();
+
+  const renderStateIconName = (): string => {
+    switch (todo.state) {
+      case TodoState.Done:
+        return "check";
+      case TodoState.WaitingForApproval:
+        return "hourglass";
+      case TodoState.Idle:
+        return "close";
+      case TodoState.InProgress:
+        return "progress_activity";
+    }
+  };
+
+  const renderStateText = (): string => {
+    switch (todo.state) {
+      case TodoState.Done:
+        return "done";
+      case TodoState.WaitingForApproval:
+        return "waiting for approval";
+      case TodoState.Idle:
+        return "unfinished";
+      case TodoState.InProgress:
+        return "in progress";
+    }
+  };
 
   return (
-    <article className={computedTodoClasses}>
-      <div className="move-controls">
-        <span className="up material-symbols-outlined">arrow_drop_up</span>
-        <span className="down material-symbols-outlined">arrow_drop_down</span>
-      </div>
-
-      <p className="description">{todo.description}</p>
-
-      <div className="actions">
-        <span className="material-symbols-outlined" onClick={() => markTodo(todo.id)}>
-          {todo.done ? "check_box" : "check_box_outline_blank"}
-        </span>
-        <span className="material-symbols-outlined" onClick={() => removeTodo(todo.id)}>
-          delete
-        </span>
-      </div>
-
-      <div className="meta">
-        <p className="author"><em>{todo.author}</em></p>
-        <p className="timestamp">{computedDate}</p>
-      </div>
+    <article className={`todo ${todo.state}`}>
+      <span className="icon material-symbols-outlined" onClick={() => updateState(todo)}>
+        {renderStateIconName()}
+      </span>
+      <p className="description">
+        {todo.description} <em className="state-text">{`...${renderStateText()}`}</em>
+      </p>
+      <span className="icon delete material-symbols-outlined" onClick={() => removeTodo(todo.id)}>
+        delete
+      </span>
     </article>
   );
 }

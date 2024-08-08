@@ -1,26 +1,40 @@
 import { v4 as uuid } from "uuid";
-import { ITodo } from "./interfaces";
+import { ITodo, TodoState } from "./interfaces";
 
-export const todoList: ITodo[] = [
+export const stateOrder: TodoState[] = [
+  TodoState.Idle,
+  TodoState.InProgress,
+  TodoState.WaitingForApproval,
+  TodoState.Done,
+];
+
+export const todosDummyData: ITodo[] = [
   {
-    author: "Niklas",
+    author: "niklas",
     id: uuid(),
     description: "Buy candy",
-    done: true,
+    state: TodoState.Idle,
     timestamp: new Date("2024-08-02").getTime(),
   },
   {
-    author: "Niklas",
+    author: "niklas",
     id: uuid(),
     description: "Do laundry",
-    done: false,
+    state: TodoState.Done,
     timestamp: new Date("2024-08-01").getTime(),
   },
   {
-    author: "Niklas",
+    author: "maria",
     id: uuid(),
     description: "Buy potatoes",
-    done: false,
+    state: TodoState.InProgress,
     timestamp: new Date("2024-08-03").getTime(),
+  },
+  {
+    author: "niklas",
+    id: uuid(),
+    description: "Eat",
+    state: TodoState.WaitingForApproval,
+    timestamp: new Date("2024-08-05").getTime(),
   },
 ];

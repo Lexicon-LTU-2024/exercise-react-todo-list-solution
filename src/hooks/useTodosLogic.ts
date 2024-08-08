@@ -1,6 +1,7 @@
-import { useOutletContext } from "react-router-dom";
-import { IOutletContext } from "../interfaces";
+import { ITodoContext } from "../interfaces";
+import { useContext } from "react";
+import { TodoContext } from "../context";
 
-export function useTodosLogic(): IOutletContext {
-  return useOutletContext<IOutletContext>();
+export function useTodosLogic(): ITodoContext {
+  return useContext(TodoContext);
 }

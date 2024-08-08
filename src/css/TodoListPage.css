@@ -1,7 +1,11 @@
-.todo-list {
+.todo-list-page {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 
+  background-color: var(--dark-grey-bg);
+  border-radius: 45px;
+  margin-inline: auto;
+  padding: 45px;
   width: 500px;
 }

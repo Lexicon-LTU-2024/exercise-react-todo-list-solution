@@ -22,31 +22,28 @@ export function AddTodoPage(): ReactElement {
     };
 
     addTodo(newTodo);
-    navigate("/", { replace: true });
+    navigate("/");
   };
 
   return (
-    <>
-      <h1>Add new Todo</h1>
-      <form onSubmit={handleOnSubmit}>
-        <input
-          className="input"
-          onChange={(e) => setContent(e.target.value)}
-          type="text"
-          placeholder="Content"
-          value={content}
-        />
-        <input
-          className="input"
-          onChange={(e) => setAuthor(e.target.value)}
-          type="text"
-          placeholder="Author"
-          value={author}
-        />
-        <button type="submit" className="btn">
-          Add
-        </button>
-      </form>
-    </>
+    <form onSubmit={handleOnSubmit}>
+      <input
+        className="input"
+        onChange={(e) => setContent(e.target.value)}
+        type="text"
+        placeholder="Content"
+        value={content}
+      />
+      <input
+        className="input"
+        onChange={(e) => setAuthor(e.target.value)}
+        type="text"
+        placeholder="Author"
+        value={author}
+      />
+      <button type="submit" className="btn">
+        Add
+      </button>
+    </form>
   );
 }
