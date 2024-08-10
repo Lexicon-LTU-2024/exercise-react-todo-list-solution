@@ -1,53 +1,43 @@
-import { ReactElement } from "react";
-import { ITodo, TodoState } from "../interfaces";
+import { MouseEventHandler, ReactElement } from "react";
+import { Direction, ITodo, TodoState } from "../interfaces";
 import { useTodosLogic } from "../hooks";
+import { getStateIconName, getStateText } from "../utilites";
 
 interface ITodoProps {
+  disableMoveDown?: true;
+  disableMoveUp?: true;
   todo: ITodo;
 }
 
-export function Todo({ todo }: ITodoProps): ReactElement {
-  const { removeTodo, updateState } = useTodosLogic();
+export function Todo({ disableMoveDown, disableMoveUp, todo }: ITodoProps): ReactElement {
+  const { moveTodo, removeTodo, updateState } = useTodosLogic();
 
-  // const computedDate = new Date(todo.timestamp).toLocaleDateString();
+  const handleOnClick: MouseEventHandler<HTMLElement> = (e): void => {
+    const target = e.target as HTMLElement;
+    const classList = target.classList;
 
-  const renderStateIconName = (): string => {
-    switch (todo.state) {
-      case TodoState.Done:
-        return "check";
-      case TodoState.WaitingForApproval:
-        return "hourglass";
-      case TodoState.Idle:
-        return "close";
-      case TodoState.InProgress:
-        return "progress_activity";
-    }
-  };
+    if (classList.contains("move-up")) return moveTodo(todo, Direction.Up);
+    if (classList.contains("move-down")) return moveTodo(todo, Direction.Down);
+    if (classList.contains("delete")) return removeTodo(todo.id);
 
-  const renderStateText = (): string => {
-    switch (todo.state) {
-      case TodoState.Done:
-        return "done";
-      case TodoState.WaitingForApproval:
-        return "waiting for approval";
-      case TodoState.Idle:
-        return "unfinished";
-      case TodoState.InProgress:
-        return "in progress";
-    }
+    updateState(todo);
   };
 
   return (
-    <article className={`todo ${todo.state}`}>
-      <span className="icon material-symbols-outlined" onClick={() => updateState(todo)}>
-        {renderStateIconName()}
+    <article className={`todo ${todo.state}`} onClick={handleOnClick}>
+      <span className="icon update-state material-symbols-outlined">
+        {getStateIconName(todo.state)}
       </span>
       <p className="description">
-        {todo.description} <em className="state-text">{`...${renderStateText()}`}</em>
+        {todo.description} <em className="state-text">{`...${getStateText(todo.state)}`}</em>
       </p>
-      <span className="icon delete material-symbols-outlined" onClick={() => removeTodo(todo.id)}>
-        delete
-      </span>
+      {!disableMoveUp && (
+        <span className="icon move-up material-symbols-outlined">arrow_upward</span>
+      )}
+      {!disableMoveDown && (
+        <span className="icon move-down material-symbols-outlined">arrow_downward</span>
+      )}
+      <span className="icon delete material-symbols-outlined">delete</span>
     </article>
   );
 }

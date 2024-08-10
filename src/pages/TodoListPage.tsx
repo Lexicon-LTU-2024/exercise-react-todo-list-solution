@@ -5,13 +5,17 @@ import { Todo } from "../components";
 export function TodoListPage(): ReactElement {
   const { todos } = useTodosLogic();
 
-  return (
-    <>
-      <main className="todo-list-page">
-        {todos.map((todo) => (
-          <Todo key={todo.id} todo={todo} />
-        ))}
-      </main>
-    </>
-  );
+  const renderTodos: ReactElement[] = todos.map((todo, index) => {
+    if (index === 0) {
+      return <Todo key={todo.id} disableMoveUp todo={todo} />;
+    }
+
+    if (index === todos.length - 1) {
+      return <Todo key={todo.id} disableMoveDown todo={todo} />;
+    }
+
+    return <Todo key={todo.id} todo={todo} />;
+  });
+
+  return <main className="todo-list-page">{renderTodos}</main>;
 }

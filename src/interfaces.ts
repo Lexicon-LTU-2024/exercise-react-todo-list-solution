@@ -1,3 +1,8 @@
+export enum Direction {
+  Up = "up",
+  Down = "down",
+}
+
 export enum TodoState {
   Done = "done",
   Idle = "idle",
@@ -6,6 +11,7 @@ export enum TodoState {
 }
 export interface ITodoContext {
   addTodo: (newTodo: ITodo) => void;
+  moveTodo: (todo: ITodo, direction: Direction) => void;
   removeTodo: (todoId: string) => void;
   updateState: (todoToUpdate: ITodo) => void;
   todos: ITodo[];

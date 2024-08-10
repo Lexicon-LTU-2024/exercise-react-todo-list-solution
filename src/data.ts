@@ -1,7 +1,7 @@
 import { v4 as uuid } from "uuid";
 import { ITodo, TodoState } from "./interfaces";
 
-export const stateOrder: TodoState[] = [
+export const states: TodoState[] = [
   TodoState.Idle,
   TodoState.InProgress,
   TodoState.WaitingForApproval,
