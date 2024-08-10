@@ -9,3 +9,13 @@
   padding: 45px;
   width: 500px;
 }
+
+.todo-list-page .filters {
+  display: flex;
+  gap: 1rem;
+}
+
+.todo-list-page .filters .filter {
+  cursor: pointer;
+  justify-self: end;
+}

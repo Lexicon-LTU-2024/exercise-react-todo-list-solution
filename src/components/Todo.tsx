@@ -1,5 +1,5 @@
 import { MouseEventHandler, ReactElement } from "react";
-import { Direction, ITodo, TodoState } from "../interfaces";
+import { Direction, ITodo } from "../interfaces";
 import { useTodosLogic } from "../hooks";
 import { getStateIconName, getStateText } from "../utilites";
 
@@ -38,6 +38,12 @@ export function Todo({ disableMoveDown, disableMoveUp, todo }: ITodoProps): Reac
         <span className="icon move-down material-symbols-outlined">arrow_downward</span>
       )}
       <span className="icon delete material-symbols-outlined">delete</span>
+      <p className="author">
+        <em>{todo.author}</em>
+      </p>
+      <p className="timestamp">
+        <em>{new Date(todo.timestamp).toLocaleDateString()}</em>
+      </p>
     </article>
   );
 }

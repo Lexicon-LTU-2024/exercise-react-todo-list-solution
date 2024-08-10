@@ -1,6 +1,6 @@
 import { FormEventHandler, ReactElement, useState } from "react";
 import { v4 as uuid } from "uuid";
-import { ITodo } from "../interfaces";
+import { ITodo, TodoState } from "../interfaces";
 import { useTodosLogic } from "../hooks";
 import { useNavigate } from "react-router-dom";
 
@@ -14,10 +14,10 @@ export function AddTodoPage(): ReactElement {
     e.preventDefault();
 
     const newTodo: ITodo = {
-      author,
+      author: author.toLowerCase(),
       description: content,
-      done: false,
       id: uuid(),
+      state: TodoState.Unfinished,
       timestamp: Date.now(),
     };
 
@@ -26,24 +26,35 @@ export function AddTodoPage(): ReactElement {
   };
 
   return (
-    <form onSubmit={handleOnSubmit}>
-      <input
-        className="input"
-        onChange={(e) => setContent(e.target.value)}
-        type="text"
-        placeholder="Content"
-        value={content}
-      />
-      <input
-        className="input"
-        onChange={(e) => setAuthor(e.target.value)}
-        type="text"
-        placeholder="Author"
-        value={author}
-      />
-      <button type="submit" className="btn">
-        Add
-      </button>
+    <form className="add-todo-page" onSubmit={handleOnSubmit}>
+      <fieldset className="input-wrapper">
+        <input
+          className="input"
+          onChange={(e) => setContent(e.target.value)}
+          placeholder="Content"
+          required
+          type="text"
+          value={content}
+        />
+      </fieldset>
+      <fieldset className="input-wrapper">
+        <input
+          className="input"
+          onChange={(e) => setAuthor(e.target.value)}
+          placeholder="Author"
+          required
+          type="text"
+          value={author}
+        />
+      </fieldset>
+      <div className="actions">
+        <button className="btn back" onClick={() => navigate("/")} type="button">
+          Back
+        </button>
+        <button className="btn add" type="submit">
+          Add
+        </button>
+      </div>
     </form>
   );
 }

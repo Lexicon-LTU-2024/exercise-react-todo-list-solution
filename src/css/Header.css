@@ -22,3 +22,7 @@
   font-size: 1.5rem;
   text-decoration: none;
 }
+
+.header .navbar .link:hover {
+  text-decoration: underline;
+}

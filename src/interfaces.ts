@@ -3,21 +3,32 @@ export enum Direction {
   Down = "down",
 }
 
+export enum Filter {
+  Author = "author",
+  Time = "time",
+}
+
 export enum TodoState {
   Done = "done",
-  Idle = "idle",
+  Unfinished = "unfinished",
   WaitingForApproval = "waiting",
   InProgress = "in-progress",
 }
+
+interface IIndexable {
+  [key: string]: any;
+}
+
 export interface ITodoContext {
   addTodo: (newTodo: ITodo) => void;
   moveTodo: (todo: ITodo, direction: Direction) => void;
   removeTodo: (todoId: string) => void;
+  sortTodos: (filter: Filter) => void;
   updateState: (todoToUpdate: ITodo) => void;
   todos: ITodo[];
 }
 
-export interface ITodo {
+export interface ITodo extends IIndexable {
   author: string;
   id: string;
   description: string;

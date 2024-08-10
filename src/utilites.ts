@@ -6,7 +6,7 @@ export function getStateIconName(state: TodoState): string {
       return "check";
     case TodoState.WaitingForApproval:
       return "hourglass";
-    case TodoState.Idle:
+    case TodoState.Unfinished:
       return "close";
     case TodoState.InProgress:
       return "progress_activity";
@@ -19,7 +19,7 @@ export function getStateText(state: TodoState): string {
       return "done";
     case TodoState.WaitingForApproval:
       return "waiting for approval";
-    case TodoState.Idle:
+    case TodoState.Unfinished:
       return "unfinished";
     case TodoState.InProgress:
       return "in progress";

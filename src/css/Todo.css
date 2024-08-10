@@ -15,17 +15,17 @@
   padding: 4px;
 }
 
-/* #### Idle state #### */
-.todo.idle {
+/* #### Unfinished state #### */
+.todo.unfinished {
   background-color: #e8e8e8;
   color: #35383e;
 }
 
-.todo.idle .icon {
+.todo.unfinished .icon {
   background-color: #d6d7d7;
 }
 
-.todo.idle .icon:hover {
+.todo.unfinished .icon:hover {
   background-color: rgb(194, 191, 191);
 }
 
@@ -96,6 +96,20 @@
 /* #### Move Down Icon #### */
 .todo .icon.move-down {
   grid-column: 4/5;
+}
+
+/* #### Author #### */
+.todo .author {
+  grid-column: 1/3;
+  font-size: 0.8rem;
+  text-transform: capitalize;
+}
+
+/* #### Timestamp #### */
+.todo .timestamp {
+  grid-column: 3/6;
+  font-size: 0.8rem;
+  justify-self: end;
 }
 
 /* ##################### */

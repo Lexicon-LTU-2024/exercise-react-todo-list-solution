@@ -1,5 +1,5 @@
 import { createContext, ReactElement, ReactNode, useState } from "react";
-import { Direction, ITodo, ITodoContext } from "../interfaces";
+import { Direction, Filter, ITodo, ITodoContext } from "../interfaces";
 import { states, todosDummyData } from "../data";
 
 interface ITodoProviderProps {
@@ -32,6 +32,15 @@ export function TodoProvider({ children }: ITodoProviderProps): ReactElement {
 
   const removeTodo = (todoId: string) => setTodos(todos.filter((todo) => todo.id !== todoId));
 
+  const sortTodos = (filter: Filter) => {
+    const tempTodos = [...todos];
+
+    if (filter === Filter.Author)
+      return setTodos(tempTodos.sort((a, b) => a.author.localeCompare(b.author)));
+    if (filter === Filter.Time)
+      return setTodos(tempTodos.sort((a, b) => a.timestamp - b.timestamp));
+  };
+
   const updateState = (todoToUpdate: ITodo) => {
     const currentIndex = states.indexOf(todoToUpdate.state);
     const nextIndex = currentIndex === states.length - 1 ? 0 : currentIndex + 1;
@@ -43,7 +52,14 @@ export function TodoProvider({ children }: ITodoProviderProps): ReactElement {
     );
   };
 
-  const values: ITodoContext = { addTodo, moveTodo, removeTodo, updateState, todos };
+  const values: ITodoContext = {
+    addTodo,
+    moveTodo,
+    removeTodo,
+    sortTodos,
+    todos,
+    updateState,
+  };
 
   return <TodoContext.Provider value={values}>{children}</TodoContext.Provider>;
 }

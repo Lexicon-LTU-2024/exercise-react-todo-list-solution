@@ -2,7 +2,7 @@ import { v4 as uuid } from "uuid";
 import { ITodo, TodoState } from "./interfaces";
 
 export const states: TodoState[] = [
-  TodoState.Idle,
+  TodoState.Unfinished,
   TodoState.InProgress,
   TodoState.WaitingForApproval,
   TodoState.Done,
@@ -10,10 +10,10 @@ export const states: TodoState[] = [
 
 export const todosDummyData: ITodo[] = [
   {
-    author: "niklas",
+    author: "anette",
     id: uuid(),
     description: "Buy candy",
-    state: TodoState.Idle,
+    state: TodoState.Unfinished,
     timestamp: new Date("2024-08-02").getTime(),
   },
   {
@@ -31,7 +31,7 @@ export const todosDummyData: ITodo[] = [
     timestamp: new Date("2024-08-03").getTime(),
   },
   {
-    author: "niklas",
+    author: "elsa",
     id: uuid(),
     description: "Eat",
     state: TodoState.WaitingForApproval,
