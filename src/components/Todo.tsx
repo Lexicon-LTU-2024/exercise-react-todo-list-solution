@@ -10,7 +10,7 @@ interface ITodoProps {
 }
 
 export function Todo({ disableMoveDown, disableMoveUp, todo }: ITodoProps): ReactElement {
-  const { moveTodo, removeTodo, updateState } = useTodosLogic();
+  const { moveTodo, removeTodo, updateStateOfTodo } = useTodosLogic();
 
   const handleOnClick: MouseEventHandler<HTMLElement> = (e): void => {
     const target = e.target as HTMLElement;
@@ -20,7 +20,7 @@ export function Todo({ disableMoveDown, disableMoveUp, todo }: ITodoProps): Reac
     if (classList.contains("move-down")) return moveTodo(todo, Direction.Down);
     if (classList.contains("delete")) return removeTodo(todo.id);
 
-    updateState(todo);
+    updateStateOfTodo(todo);
   };
 
   return (

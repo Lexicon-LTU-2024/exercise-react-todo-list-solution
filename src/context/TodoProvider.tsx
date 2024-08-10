@@ -41,7 +41,7 @@ export function TodoProvider({ children }: ITodoProviderProps): ReactElement {
       return setTodos(tempTodos.sort((a, b) => a.timestamp - b.timestamp));
   };
 
-  const updateState = (todoToUpdate: ITodo) => {
+  const updateStateOfTodo = (todoToUpdate: ITodo) => {
     const currentIndex = states.indexOf(todoToUpdate.state);
     const nextIndex = currentIndex === states.length - 1 ? 0 : currentIndex + 1;
 
@@ -58,7 +58,7 @@ export function TodoProvider({ children }: ITodoProviderProps): ReactElement {
     removeTodo,
     sortTodos,
     todos,
-    updateState,
+    updateStateOfTodo,
   };
 
   return <TodoContext.Provider value={values}>{children}</TodoContext.Provider>;

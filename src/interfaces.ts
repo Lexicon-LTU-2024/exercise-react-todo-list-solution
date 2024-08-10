@@ -24,7 +24,7 @@ export interface ITodoContext {
   moveTodo: (todo: ITodo, direction: Direction) => void;
   removeTodo: (todoId: string) => void;
   sortTodos: (filter: Filter) => void;
-  updateState: (todoToUpdate: ITodo) => void;
+  updateStateOfTodo: (todoToUpdate: ITodo) => void;
   todos: ITodo[];
 }
 
