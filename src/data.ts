@@ -37,4 +37,25 @@ export const todosDummyData: ITodo[] = [
     state: TodoState.WaitingForApproval,
     timestamp: new Date("2024-08-05").getTime(),
   },
+  {
+    author: "peter",
+    id: uuid(),
+    description: "Take car to the mechanics, the finnish guy",
+    state: TodoState.WaitingForApproval,
+    timestamp: new Date("2024-07-05").getTime(),
+  },
+  {
+    author: "Maria",
+    id: uuid(),
+    description: "Sort papers",
+    state: TodoState.Unfinished,
+    timestamp: new Date("2024-07-29").getTime(),
+  },
+  {
+    author: "Niklas",
+    id: uuid(),
+    description: "Mown the lawn",
+    state: TodoState.InProgress,
+    timestamp: new Date("2024-08-03").getTime(),
+  },
 ];

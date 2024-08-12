@@ -4,8 +4,11 @@
   justify-content: space-between;
 
   background-color: var(--black-bg);
-  margin-bottom: 3rem;
   padding: 0.5rem 1rem;
+  width: 100%;
+
+  position: fixed;
+  top: 0;
 }
 
 .header .logo {

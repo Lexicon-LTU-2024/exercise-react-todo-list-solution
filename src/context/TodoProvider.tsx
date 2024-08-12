@@ -52,6 +52,9 @@ export function TodoProvider({ children }: ITodoProviderProps): ReactElement {
     );
   };
 
+  const updateTodo = (updatedTodo: ITodo) =>
+    setTodos(todos.map((todo) => (todo.id === updatedTodo.id ? updatedTodo : todo)));
+
   const values: ITodoContext = {
     addTodo,
     moveTodo,
@@ -59,6 +62,7 @@ export function TodoProvider({ children }: ITodoProviderProps): ReactElement {
     sortTodos,
     todos,
     updateStateOfTodo,
+    updateTodo,
   };
 
   return <TodoContext.Provider value={values}>{children}</TodoContext.Provider>;
